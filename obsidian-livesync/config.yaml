@@ -1,0 +1,23 @@
+name: Obsidian LiveSync CouchDB
+version: "1.0.0"
+slug: obsidian_livesync
+description: 給 Obsidian Self-hosted LiveSync 用的 CouchDB 伺服器
+url: https://github.com/s424221/DIY-Obsidian-Sync
+arch:
+  - aarch64
+  - amd64
+startup: services
+boot: auto
+init: false
+ports:
+  5984/tcp: 5984
+ports_description:
+  5984/tcp: CouchDB（LiveSync 連線用）
+options:
+  username: obsidian
+  password: ""
+  database: obsidian
+schema:
+  username: match(^[A-Za-z0-9_.-]+$)
+  password: password
+  database: match(^[a-z][a-z0-9_-]*$)

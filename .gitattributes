@@ -1,0 +1,3 @@
+# 確保腳本在 Windows 上編輯後仍是 LF，否則 add-on 會無法啟動
+* text=auto eol=lf
+*.png binary
