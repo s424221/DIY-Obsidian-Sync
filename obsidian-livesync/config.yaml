@@ -1,5 +1,5 @@
 name: Obsidian LiveSync CouchDB
-version: "1.0.0"
+version: "1.0.1"
 slug: obsidian_livesync
 description: 給 Obsidian Self-hosted LiveSync 用的 CouchDB 伺服器
 url: https://github.com/s424221/DIY-Obsidian-Sync
