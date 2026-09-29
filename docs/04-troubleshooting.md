@@ -11,7 +11,7 @@
    - Tailscale 管理後台 → Machines → Pi → **Edit route settings**，確認區網網段已經核准。
    - Windows / Mac 的 Tailscale 選單裡，**Use Tailscale subnets** 要勾選。
    - 重新啟動 HA 的 Tailscale add-on 再試一次。
-5. **在某些外部網路連不上**：那個網路可能剛好跟你家同網段（例如也是 `192.168.2.x`），流量被送到當地的網路了。這時把 LiveSync 的 URI 暫時改成 Pi 的 Tailscale IP（`http://100.x.y.z:5984`，在 Tailscale app 或管理後台可以查到）。
+5. **在某些外部網路連不上**：那個網路可能剛好跟你家同網段（例如也是 `192.168.1.x`），流量被送到當地的網路了。這時把 LiveSync 的 URI 暫時改成 Pi 的 Tailscale IP（`http://100.x.y.z:5984`，在 Tailscale app 或管理後台可以查到）。
    根本的解法是把家裡路由器的網段改成比較少見的，例如 `192.168.87.x`。
 
 ## Android 上 LiveSync 連不上，但電腦可以（HTTP 被擋）
