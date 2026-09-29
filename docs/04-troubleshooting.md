@@ -7,8 +7,12 @@
 1. **Tailscale 有連上嗎？** 這台裝置和 Pi 在 Tailscale app 裡都要顯示為連線中。
 2. **add-on 有在跑嗎？** 看 HA 裡 add-on 的 Log 分頁有沒有「CouchDB 已就緒」。
 3. **port 有沒有被關掉？** add-on 的 **Configuration → Network** 裡，5984 不能是空白（空白代表停用）。
-4. **名稱解析失敗？** 把網址裡的 `homeassistant.<tailnet>.ts.net` 換成 Pi 的 Tailscale IP（`100.x.y.z`，在 Tailscale app 或管理後台可以查到）試試。可以通的話，就是 MagicDNS 沒開。
-5. 在區網用 `http://<Pi 的區網 IP>:5984` 可以連，但透過 Tailscale 不行：重新啟動 HA 的 Tailscale add-on 再試一次。
+4. **在家可以連，在外面不行？**
+   - Tailscale 管理後台 → Machines → Pi → **Edit route settings**，確認區網網段已經核准。
+   - Windows / Mac 的 Tailscale 選單裡，**Use Tailscale subnets** 要勾選。
+   - 重新啟動 HA 的 Tailscale add-on 再試一次。
+5. **在某些外部網路連不上**：那個網路可能剛好跟你家同網段（例如也是 `192.168.2.x`），流量被送到當地的網路了。這時把 LiveSync 的 URI 暫時改成 Pi 的 Tailscale IP（`http://100.x.y.z:5984`，在 Tailscale app 或管理後台可以查到）。
+   根本的解法是把家裡路由器的網段改成比較少見的，例如 `192.168.87.x`。
 
 ## Android 上 LiveSync 連不上，但電腦可以（HTTP 被擋）
 
@@ -26,7 +30,7 @@
    docker exec <容器名稱> tailscale serve status
    ```
    如果轉過去連不到，把 `127.0.0.1` 換成 Pi 的區網 IP 再試一次。
-5. 所有裝置的 LiveSync URI 改成 `https://homeassistant.<tailnet>.ts.net:6984`。
+5. 所有裝置的 LiveSync URI 改成（HTTPS 憑證只綁 `*.ts.net` 名稱，這裡不能用區網 IP；Tailscale 管理後台的 **DNS** 頁面要開啟 **MagicDNS**） `https://homeassistant.<tailnet>.ts.net:6984`。
 6. 用 `./scripts/check-couchdb.sh https://homeassistant.<tailnet>.ts.net:6984 obsidian` 驗證。
 7. **重新啟動 Tailscale add-on 和 HA 之後，再跑一次 `tailscale serve status`**，確認設定還在。
    如果 Tailscale add-on 的 Home Assistant 分享功能也有開，它可能會覆蓋這個設定；不見了就重新執行第 4 步。

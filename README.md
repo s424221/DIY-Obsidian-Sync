@@ -15,6 +15,8 @@ Android ─┘   Obsidian + LiveSync 外掛              ├─ Tailscale add-on
                                                     └─ Obsidian LiveSync CouchDB add-on（:5984）
 ```
 
+所有裝置都用 **Pi 的區網 IP**（例如 `http://192.168.2.100:5984`）連線：在家直接走區網，在外面由 Tailscale 的 subnet route 轉送。
+
 ## 快速開始
 
 1. [在 HA 安裝 CouchDB add-on](docs/01-ha-addon.md)

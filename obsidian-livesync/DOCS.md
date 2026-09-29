@@ -14,8 +14,9 @@
 
 ## 連線位址
 
-- 家裡區網：`http://<Pi 的 IP>:5984`
-- 外面（透過 Tailscale）：`http://<Pi 的 Tailscale 名稱>:5984`
+`http://<Pi 的區網 IP>:5984`，例如 `http://192.168.2.100:5984`。
+
+在家直接走區網；在外面只要裝置連著 Tailscale，並在 Tailscale 後台核准 Pi 廣播的區網路由（subnet route），同一個網址也能用。
 
 資料存在 add-on 的 `/data/couchdb`，會被 Home Assistant 的備份包含。
 

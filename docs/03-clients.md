@@ -15,7 +15,7 @@
 3. 開啟 LiveSync 設定，依照設定精靈選擇 **手動設定 / CouchDB**，然後填入：
    | 欄位 | 值 |
    |---|---|
-   | URI | `http://homeassistant.<tailnet>.ts.net:5984` |
+   | URI | `http://<Pi 的區網 IP>:5984`，例如 `http://192.168.2.100:5984` |
    | Username | add-on 設定的 `username` |
    | Password | add-on 設定的 `password` |
    | Database name | `obsidian` |
